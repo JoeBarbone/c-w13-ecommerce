@@ -17,7 +17,14 @@ router.get('/', (req, res) => {
       "stock",
       "category_id",
       "createdAt"]
-      [sequelize.literal('SELECT * FROM product')]
+      [sequelize.literal('SELECT * FROM product')],
+
+      include: [
+        {
+          model: Category,
+          attributes: ["id", "category_name"]
+        }
+      ]
   })
   .then(dbProductData => res.json(dbProductData))
   .catch(err => {
@@ -41,7 +48,14 @@ router.get('/:id', (req, res) => {
       "stock",
       "category_id",
       "createdAt"]
-      [sequelize.literal('SELECT * FROM product WHERE id = product.id')]
+      [sequelize.literal('SELECT * FROM product WHERE id = product.id')],
+      
+      include: [
+        {
+          model: Category,
+          attributes: ["id", "category_name"]
+        }
+      ]
   })
   .then(dbProductData => {
     if (!dbProductData) {

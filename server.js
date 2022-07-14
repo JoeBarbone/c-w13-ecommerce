@@ -24,10 +24,3 @@ sequelize.sync({ force: true }).then(() => {
   seedProductTags();
   app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
 });
-
-
-
-  
-
-// Left off adding the seedCategories() functoin
-// complete the remaining models and seeds
