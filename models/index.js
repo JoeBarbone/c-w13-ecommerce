@@ -15,15 +15,21 @@ Category.hasMany(Product, {
   foreignKey: "category_id"
 });
 
+
+
+// I don't get this
+
 // Products belongToMany Tags (through ProductTag)
-// Product.belongsToMany(ProductTag, {
-//   foreignKey: "tag.id"
-// });
+Product.belongsToMany(Tag, {
+  through: ProductTag,
+  foreignKey: "product_id"
+});
 
 // Tags belongToMany Products (through ProductTag)
-// Tag.belongsToMany(ProductTag, {
-//   foreignKey: "tag.id"
-// })
+Tag.belongsToMany(Product, {
+  through: ProductTag,
+  foreignKey: "tag_id"
+});
 
 
 

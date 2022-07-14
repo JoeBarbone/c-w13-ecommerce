@@ -12,7 +12,14 @@ router.get('/', (req, res) => {
       "id",
       "tag_name",
       "createdAt"]
-      [sequelize.literal('SELECT * FROM tag')]
+      [sequelize.literal('SELECT * FROM tag')],
+
+      include: [
+        {
+          model: Product,
+          through: ProductTag
+        }
+      ]
   })
   .then(dbTagData => res.json(dbTagData))
   .catch(err => {
